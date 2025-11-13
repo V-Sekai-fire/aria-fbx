@@ -5,14 +5,14 @@ defmodule AriaFbx.Parser do
   @moduledoc """
   Parses ufbx scene data into FBXDocument structure.
 
-  This module converts the raw ufbx C library output into Elixir
+  This module converts the raw ufbx-python library output into Elixir
   structures that can be processed uniformly with glTF documents.
   """
 
   alias AriaFbx.{Document, Scene}
 
   @doc """
-  Parses a ufbx scene (from NIF) into an FBXDocument.
+  Parses a ufbx scene (from ufbx-python) into an FBXDocument.
 
   Extracts nodes, meshes, materials, textures, and animations from
   the ufbx scene data structure and converts them to FBXDocument format.

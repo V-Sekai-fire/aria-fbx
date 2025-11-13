@@ -1,17 +1,17 @@
 # AriaFbx
 
-FBX file processing library for Elixir using the ufbx C library.
+FBX file processing library for Elixir using the ufbx-python library.
 
 ## Overview
 
-AriaFbx provides FBX file import functionality using the ufbx library via NIFs (Native Implemented Functions). It converts FBX files into structured Elixir data structures that can be processed uniformly with other 3D formats.
+AriaFbx provides FBX file import functionality using the ufbx-python library via pythonx. It converts FBX files into structured Elixir data structures that can be processed uniformly with other 3D formats.
 
 ## Features
 
 - **FBX Import**: Load FBX files (binary and ASCII formats)
 - **Scene Structure**: Nodes, meshes, materials, textures, and animations
 - **BMesh Conversion**: Convert FBX meshes to BMesh format for n-gon geometry
-- **NIF Integration**: Native performance via ufbx C library
+- **Python Integration**: Uses ufbx-python via pythonx
 
 ## Installation
 
@@ -56,24 +56,25 @@ fbx_mesh = document.meshes |> List.first()
 - `AriaFbx.Document` - FBX document structure
 - `AriaFbx.Scene` - Scene data types (Node, Mesh, Material, Texture, Animation)
 - `AriaFbx.Parser` - Converts ufbx data to Elixir structures
-- `AriaFbx.Nif` - NIF wrapper for ufbx library
+- `AriaFbx.Nif` - Python wrapper for ufbx-python library
 - `AriaFbx.BmeshConverter` - Converts FBX meshes to BMesh format
 
 ## Requirements
 
 - Elixir ~> 1.18
-- C compiler (for building NIFs)
+- Python >= 3.9 (for pythonx and ufbx-python)
 - `aria_bmesh` package
 
 ## Building
 
-The project uses `elixir_make` to compile the ufbx NIF. Run:
+The project uses `pythonx` to manage Python dependencies. Run:
 
 ```bash
+mix deps.get
 mix compile
 ```
 
-This will build the NIF shared library in `priv/ufbx_nif.so` (or `.dylib` on macOS).
+This will install ufbx-python from git via pythonx's uv dependency management.
 
 ## License
 
