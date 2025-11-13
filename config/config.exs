@@ -14,4 +14,3 @@ config :pythonx, :uv_init,
       "ufbx @ git+https://github.com/bqqbarbhg/ufbx-python.git",
   ]
   """
-

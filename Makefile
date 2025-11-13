@@ -13,12 +13,14 @@ BUILD_DIR = c_build
 # Source files
 C_SRC = c_src/ufbx_nif.c
 UFBX_SRC = thirdparty/ufbx/ufbx.c
-C_OBJECTS = $(BUILD_DIR)/ufbx_nif.o $(BUILD_DIR)/ufbx.o
+UFBX_WRITE_SRC = thirdparty/ufbx_write/ufbx_write.c
+C_OBJECTS = $(BUILD_DIR)/ufbx_nif.o $(BUILD_DIR)/ufbx.o $(BUILD_DIR)/ufbx_write.o
 
 # Compiler flags
 CFLAGS = -fPIC -std=c99 -Wall -Wextra
 CFLAGS += -I$(ERL_EI_INCLUDE_DIR)
 CFLAGS += -Ithirdparty/ufbx
+CFLAGS += -Ithirdparty/ufbx_write
 
 # Linker flags (use -bundle for macOS, -shared for Linux)
 UNAME_S := $(shell uname -s)
@@ -43,6 +45,10 @@ $(BUILD_DIR)/ufbx_nif.o: $(C_SRC) | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -fno-common
 
 $(BUILD_DIR)/ufbx.o: $(UFBX_SRC) | $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c -o $@ $< -fno-common
+
+$(BUILD_DIR)/ufbx_write.o: $(UFBX_WRITE_SRC) | $(BUILD_DIR)
 	@mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -fno-common
 

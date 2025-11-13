@@ -179,6 +179,7 @@ defmodule AriaFbx.BmeshConverter do
     if index < length(normals) do
       # Normals are flat list [nx1, ny1, nz1, nx2, ny2, nz2, ...]
       [nx, ny, nz] = Enum.slice(normals, index * 3, 3)
+
       Keyword.update(opts, :attributes, %{}, fn attrs ->
         Map.put(attrs, "NORMAL", {nx, ny, nz})
       end)
@@ -312,4 +313,3 @@ defmodule AriaFbx.BmeshConverter do
     %{bmesh | loops: updated_loops}
   end
 end
-

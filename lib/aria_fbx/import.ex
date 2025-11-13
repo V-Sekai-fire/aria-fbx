@@ -72,10 +72,13 @@ defmodule AriaFbx.Import do
 
   # Validate document version
   defp validate_version(version) when is_binary(version) and version != "", do: :ok
-  defp validate_version(_), do: {:error, "FBX document version is required and must be a non-empty string"}
+
+  defp validate_version(_),
+    do: {:error, "FBX document version is required and must be a non-empty string"}
 
   # Validate node references (mesh_id, parent_id, children)
   defp validate_node_references(%Document{nodes: nil}), do: :ok
+
   defp validate_node_references(%Document{nodes: nodes}) when is_list(nodes) do
     node_ids = Enum.map(nodes, & &1.id) |> MapSet.new()
 
@@ -104,24 +107,31 @@ defmodule AriaFbx.Import do
     children_references_valid =
       Enum.all?(nodes, fn node ->
         case node.children do
-          nil -> true
+          nil ->
+            true
+
           children when is_list(children) ->
             Enum.all?(children, &MapSet.member?(node_ids, &1))
-          _ -> false
+
+          _ ->
+            false
         end
       end)
 
     if mesh_references_valid && parent_references_valid && children_references_valid do
       :ok
     else
-      {:error, "Invalid node references: parent_id, children, or mesh_id references invalid nodes"}
+      {:error,
+       "Invalid node references: parent_id, children, or mesh_id references invalid nodes"}
     end
   end
+
   defp validate_node_references(_), do: {:error, "Nodes must be a list or nil"}
 
   # Validate mesh references
   defp validate_mesh_references(%Document{meshes: nil, nodes: nil}), do: :ok
   defp validate_mesh_references(%Document{meshes: nil}), do: :ok
+
   defp validate_mesh_references(%Document{meshes: meshes, nodes: nodes}) when is_list(meshes) do
     mesh_ids = Enum.map(meshes, & &1.id) |> MapSet.new()
 
@@ -145,6 +155,7 @@ defmodule AriaFbx.Import do
       :ok
     end
   end
+
   defp validate_mesh_references(_), do: {:error, "Meshes must be a list or nil"}
 
   @doc """
@@ -184,4 +195,3 @@ defmodule AriaFbx.Import do
     end
   end
 end
-
