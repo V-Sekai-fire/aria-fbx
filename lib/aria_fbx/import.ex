@@ -5,7 +5,7 @@ defmodule AriaFbx.Import do
   @moduledoc """
   FBX file import functionality.
 
-  Provides functions to load FBX files using the ufbx library via NIFs
+  Provides functions to load FBX files using the ufbx-python library via pythonx
   and convert them to FBXDocument structures, aligned with the
   AriaGltf.Import API.
   """
@@ -31,7 +31,7 @@ defmodule AriaFbx.Import do
   def from_file(file_path, opts \\ []) when is_binary(file_path) do
     validate? = Keyword.get(opts, :validate, true)
 
-    # Handle NIF errors gracefully (NIF may raise if not loaded or on file errors)
+    # Handle pythonx errors gracefully
     try do
       case Nif.load_fbx(file_path) do
         {:ok, ufbx_data} ->
