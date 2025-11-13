@@ -46,11 +46,11 @@ $(BUILD_DIR)/ufbx_nif.o: $(C_SRC) | $(BUILD_DIR)
 
 $(BUILD_DIR)/ufbx.o: $(UFBX_SRC) | $(BUILD_DIR)
 	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c -o $@ $< -fno-common
+	$(CC) $(CFLAGS) -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-missing-field-initializers -Wno-sign-compare -Wno-char-subscripts -c -o $@ $< -fno-common
 
 $(BUILD_DIR)/ufbx_write.o: $(UFBX_WRITE_SRC) | $(BUILD_DIR)
 	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c -o $@ $< -fno-common
+	$(CC) $(CFLAGS) -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-missing-field-initializers -Wno-sign-compare -Wno-char-subscripts -Wno-unused-but-set-variable -Wno-missing-braces -c -o $@ $< -fno-common
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)

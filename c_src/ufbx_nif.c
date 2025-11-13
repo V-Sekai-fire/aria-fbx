@@ -532,6 +532,7 @@ static ERL_NIF_TERM extract_scene_data(ErlNifEnv* env, ufbx_scene *scene) {
 
 static ERL_NIF_TERM load_fbx_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
+    (void)argc;  // Unused parameter
     ErlNifBinary file_path_bin;
     ufbx_error error;
     ufbx_scene *scene;
@@ -572,6 +573,7 @@ static ERL_NIF_TERM load_fbx_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM ar
 // Load FBX from binary data
 static ERL_NIF_TERM load_fbx_binary_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
+    (void)argc;  // Unused parameter
     ErlNifBinary data_bin;
     ufbx_error error;
     ufbx_scene *scene;
@@ -1177,7 +1179,6 @@ static ERL_NIF_TERM write_fbx_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM a
     
     // Determine format
     ufbxw_save_format format = UFBXW_SAVE_FORMAT_BINARY;
-    unsigned int atom_len;
     char atom_buf[256];
     if (enif_get_atom(env, format_atom, atom_buf, sizeof(atom_buf), ERL_NIF_LATIN1)) {
         if (strcmp(atom_buf, "ascii") == 0) {
@@ -1213,9 +1214,9 @@ static ERL_NIF_TERM write_fbx_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM a
 }
 
 static ErlNifFunc nif_funcs[] = {
-    {"load_fbx", 1, load_fbx_nif},
-    {"load_fbx_binary", 1, load_fbx_binary_nif},
-    {"write_fbx", 3, write_fbx_nif}
+    {"load_fbx", 1, load_fbx_nif, 0},
+    {"load_fbx_binary", 1, load_fbx_binary_nif, 0},
+    {"write_fbx", 3, write_fbx_nif, 0}
 };
 
 ERL_NIF_INIT(Elixir.AriaFbx.Nif, nif_funcs, NULL, NULL, NULL, NULL)
