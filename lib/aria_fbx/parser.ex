@@ -117,8 +117,9 @@ defmodule AriaFbx.Parser do
   end
 
   defp parse_animation(animation_data) when is_map(animation_data) do
-    keyframes = (animation_data["keyframes"] || [])
-                |> Enum.map(&parse_keyframe/1)
+    keyframes =
+      (animation_data["keyframes"] || [])
+      |> Enum.map(&parse_keyframe/1)
 
     %Scene.Animation{
       id: animation_data["id"] || 0,
@@ -144,7 +145,10 @@ defmodule AriaFbx.Parser do
   defp parse_vec3(_), do: nil
 
   defp parse_vec4(nil), do: nil
-  defp parse_vec4([x, y, z, w]) when is_number(x) and is_number(y) and is_number(z) and is_number(w), do: {x, y, z, w}
+
+  defp parse_vec4([x, y, z, w])
+       when is_number(x) and is_number(y) and is_number(z) and is_number(w),
+       do: {x, y, z, w}
+
   defp parse_vec4(_), do: nil
 end
-

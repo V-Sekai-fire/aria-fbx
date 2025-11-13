@@ -11,7 +11,9 @@ defmodule AriaFbx.MixProject do
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      description: "ARIA FBX - FBX file processing library using ufbx-python",
+      compilers: [:elixir_make | Mix.compilers()],
+      make_clean: ["clean"],
+      description: "ARIA FBX - FBX file processing library using ufbx C library via NIFs",
       package: package()
     ]
   end
@@ -25,9 +27,11 @@ defmodule AriaFbx.MixProject do
   defp deps do
     [
       {:jason, "~> 1.4"},
-      {:pythonx, "~> 0.4.0", runtime: false},
+      {:elixir_make, "~> 0.7", runtime: false},
       {:briefly, git: "https://github.com/CargoSense/briefly.git"},
-      {:aria_bmesh, git: "https://github.com/V-Sekai-fire/aria-bmesh.git"}
+      {:aria_bmesh, git: "https://github.com/V-Sekai-fire/aria-bmesh.git"},
+      {:dialyxir, "~> 1.4", only: [:dev], runtime: false},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -39,4 +43,3 @@ defmodule AriaFbx.MixProject do
     ]
   end
 end
-

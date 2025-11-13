@@ -249,9 +249,9 @@ defmodule AriaFbx.Scene do
     end
 
     defp encode_optional_list(nil, _encoder), do: nil
+
     defp encode_optional_list(list, encoder) when is_list(list) do
       Enum.map(list, encoder)
     end
   end
 end
-
