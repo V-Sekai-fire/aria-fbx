@@ -72,10 +72,6 @@ jobs:
         run: mix credo --strict || true
         continue-on-error: true
 
-      - name: Run Dialyzer
-        run: mix dialyzer || true
-        continue-on-error: true
-
   compile-check:
     name: Compilation Check
     runs-on: ubuntu-latest

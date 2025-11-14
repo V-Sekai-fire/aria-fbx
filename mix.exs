@@ -29,8 +29,7 @@ defmodule AriaFbx.MixProject do
       {:jason, "~> 1.4"},
       {:elixir_make, "~> 0.7", runtime: false},
       {:briefly, git: "https://github.com/CargoSense/briefly.git"},
-      {:aria_bmesh, git: "https://github.com/V-Sekai-fire/aria-bmesh.git"},
-      {:dialyxir, "~> 1.4", only: [:dev], runtime: false},
+      {:aria_usd, git: "https://github.com/V-Sekai-fire/aria-usd.git"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
