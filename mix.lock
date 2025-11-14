@@ -1,5 +1,6 @@
 %{
   "aria_bmesh": {:git, "https://github.com/V-Sekai-fire/aria-bmesh.git", "17b4994c08a71e7d7b904bda3358dd9d79b9911c", []},
+  "aria_usd": {:git, "https://github.com/V-Sekai-fire/aria-usd.git", "92ef528d0e5aa2a1a88e3fb99ac44094c2f1795b", []},
   "briefly": {:git, "https://github.com/CargoSense/briefly.git", "a533393826195e640f24089fca751826858ebe53", []},
   "bunt": {:hex, :bunt, "1.0.0", "081c2c665f086849e6d57900292b3a161727ab40431219529f13c4ddcf3e7a44", [:mix], [], "hexpm", "dc5f86aa08a5f6fa6b8096f0735c4e76d54ae5c9fa2c143e5a1fc7c1cd9bb6b5"},
   "cc_precompiler": {:hex, :cc_precompiler, "0.1.11", "8c844d0b9fb98a3edea067f94f616b3f6b29b959b6b3bf25fee94ffe34364768", [:mix], [{:elixir_make, "~> 0.7", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "3427232caf0835f94680e5bcf082408a70b48ad68a5f5c0b02a3bea9f3a075b9"},

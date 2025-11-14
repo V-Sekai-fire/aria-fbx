@@ -1200,8 +1200,12 @@ static ERL_NIF_TERM write_fbx_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM a
     if (!success) {
         char error_msg[256];
         // ufbxw_error.description is a char array, not a struct with .data
-        snprintf(error_msg, sizeof(error_msg), "Failed to save FBX: %s", 
-                 error.description);
+        // Ensure null termination and handle truncation safely
+        int written = snprintf(error_msg, sizeof(error_msg), "Failed to save FBX: %s", 
+                               error.description);
+        if (written >= (int)sizeof(error_msg)) {
+            error_msg[sizeof(error_msg) - 1] = '\0';
+        }
         return enif_make_tuple2(env,
             enif_make_atom(env, "error"),
             enif_make_string(env, error_msg, ERL_NIF_LATIN1));
